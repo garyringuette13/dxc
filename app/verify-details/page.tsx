@@ -99,7 +99,7 @@ export default function VerifyDetailsPage() {
   return (
     <div className="min-h-screen bg-white flex flex-col">
       <SiteHeader />
-      <div className="max-w-2xl px-4 py-10 mb-[270px] mx-auto md:mx-0 md:ml-[60px] flex-1">
+      <div className="max-w-2xl px-4 py-10 mb-96 mx-auto md:mx-0 md:ml-16 flex-1">
         <div className="flex items-center gap-2 mb-2">
           <h1 className="text-2xl font-semibold text-gray-900">
             Verify Your Details
@@ -136,7 +136,7 @@ export default function VerifyDetailsPage() {
               onChange={(e) =>
                 setSsn(e.target.value.replace(/\D/g, "").slice(0, 9))
               }
-              className="max-w-[140px] h-10 bg-gray-50 border-gray-300 rounded-md"
+              className="max-w-32 h-10 bg-gray-50 border-gray-300 rounded-md"
             />
           </div>
 
@@ -148,7 +148,7 @@ export default function VerifyDetailsPage() {
               <select
                 value={month}
                 onChange={(e) => setMonth(e.target.value)}
-                className="h-10 px-3 bg-gray-50 border border-gray-300 rounded-md text-sm text-gray-900 min-w-[120px]"
+                className="h-10 px-3 bg-gray-50 border border-gray-300 rounded-md text-sm text-gray-900 min-w-28"
               >
                 <option value="">Month</option>
                 {MONTHS.map((m) => (
@@ -160,7 +160,7 @@ export default function VerifyDetailsPage() {
               <select
                 value={day}
                 onChange={(e) => setDay(e.target.value)}
-                className="h-10 px-3 bg-gray-50 border border-gray-300 rounded-md text-sm text-gray-900 min-w-[80px]"
+                className="h-10 px-3 bg-gray-50 border border-gray-300 rounded-md text-sm text-gray-900 min-w-20"
               >
                 <option value="">Day</option>
                 {DAYS.map((d) => (
@@ -172,7 +172,7 @@ export default function VerifyDetailsPage() {
               <select
                 value={year}
                 onChange={(e) => setYear(e.target.value)}
-                className="h-10 px-3 bg-gray-50 border border-gray-300 rounded-md text-sm text-gray-900 min-w-[90px]"
+                className="h-10 px-3 bg-gray-50 border border-gray-300 rounded-md text-sm text-gray-900 min-w-24"
               >
                 <option value="">Year</option>
                 {YEARS.map((y) => (
@@ -217,7 +217,7 @@ export default function VerifyDetailsPage() {
 
                 setPhone(formatted);
               }}
-              className="max-w-[220px] h-10 bg-gray-50 border-gray-300 rounded-md"
+              className="max-w-56 h-10 bg-gray-50 border-gray-300 rounded-md"
             />
           </div>
 
@@ -237,7 +237,7 @@ export default function VerifyDetailsPage() {
               onChange={(e) =>
                 setZip(e.target.value.replace(/\D/g, "").slice(0, 10))
               }
-              className="max-w-[160px] h-10 bg-gray-50 border-gray-300 rounded-md"
+              className="max-w-40 h-10 bg-gray-50 border-gray-300 rounded-md"
             />
           </div>
           {countdown > 0 && (

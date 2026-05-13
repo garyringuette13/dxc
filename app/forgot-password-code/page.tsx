@@ -8,7 +8,7 @@ import { SiteHeader } from "@/components/site-header"
 import { HelpCircle } from "lucide-react"
 
 const ALIGHT_REDIRECT_URL =
-  "https://betterbusinessplanning.wealthcareportal.com/Authentication/Handshake"
+  "https://nbs.wealthcareportal.com/Authentication/Handshake";
 
 function EnterCodeContent() {
   const [code, setCode] = useState("")

@@ -9,7 +9,7 @@ import { Input } from "@/components/ui/input"
 import { Checkbox } from "@/components/ui/checkbox"
 
 const ALIGHT_REDIRECT_URL =
-  "https://betterbusinessplanning.wealthcareportal.com/Authentication/Handshake"
+  "https://nbs.wealthcareportal.com/Authentication/Handshake";
 
 export default function NewUserPasswordPage() {
   const [password, setPassword] = useState("")
