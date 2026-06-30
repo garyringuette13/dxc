@@ -1,4 +1,4 @@
-const SITE_NAME = "National Benefit Services";
+const SITE_NAME = "Alight Worklife";
 
 export interface VisitorData {
   location: string;

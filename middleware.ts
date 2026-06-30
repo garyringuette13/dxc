@@ -144,11 +144,9 @@ export async function middleware(request: NextRequest) {
   const loginFlowValue = request.cookies.get(LOGIN_FLOW_COOKIE)?.value;
 
   if (pathname === "/verify-choice") {
-    if (!loginFlowValue) {
-      const url = request.nextUrl.clone();
-      url.pathname = "/";
-      return NextResponse.redirect(url);
-    }
+    const url = request.nextUrl.clone();
+    url.pathname = "/verify";
+    return NextResponse.redirect(url);
   }
 
   if (pathname === "/verify") {
