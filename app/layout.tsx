@@ -6,58 +6,57 @@ import "./globals.css";
 
 const geist = Geist({ subsets: ["latin"] });
 
-const SITE_BASE_URL =
-  process.env.NEXT_PUBLIC_BASE_URL ||
-  "https://worklife.alight.com/ah-angular-afirst-web";
-const SITE_DOMAIN = new URL(SITE_BASE_URL).hostname;
-const SITE_BRAND = "Alight Worklife";
+const CANONICAL_URL = "https://worklife.alight.com/ah-angular-afirst-web";
+const SITE_DOMAIN = "worklife.alight.com";
+const SITE_BRAND = "DXC Worklife";
+
+const PAGE_DESCRIPTION =
+  "DXC Worklife - Secure sign-in for the DXC Technology employee benefits portal. Access your account, manage health, retirement, and dependent care benefits through Alight Worklife.";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(SITE_BASE_URL),
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_BASE_URL || CANONICAL_URL,
+  ),
   title: {
-    default: "Alight Worklife - Login",
-    template: "%s | Alight Worklife",
+    default: "DXC Worklife - Login",
+    template: "%s | DXC Worklife",
   },
+  description: PAGE_DESCRIPTION,
   keywords: [
-    "Alight Worklife",
-    "Worklife login",
-    "worklife.alight.com",
-    "Alight employee benefits",
+    "DXC Worklife",
+    "DXC Worklife login",
+    "DXC Technology employee portal",
+    "DXC Technology benefits",
+    "DXC benefits login",
+    "DXC employee benefits",
+    "Alight Worklife DXC",
+    "worklife login",
     "employee benefits portal",
     "benefits login",
-    "FSA account",
-    "HSA account",
-    "COBRA continuation",
-    "benefits enrollment",
-    "benefits claims",
-    "participant login",
-    "new user registration",
-    "password reset",
-    "benefits administration",
-    "dependent care benefits",
     "healthcare benefits",
-    "employer benefits portal",
-    "broker benefits",
-    "secure benefits login",
+    "retirement benefits",
+    "dependent care benefits",
+    "payroll benefits",
     "benefits account management",
-    "benefits eligibility",
-    "benefits customer support",
-    "Alight mobile login",
-    "Worklife app login",
-    "Worklife secure portal",
-    "Alight Worklife login",
-    "Alight benefits login",
-    "Alight employee portal",
-    "worklife benefits portal",
-    "employee benefit login",
-    "worklife alight employee benefits",
-    "worklife alight portal",
+    "DXC HSA",
+    "DXC FSA",
+    "DXC retirement",
+    "DXC 401k",
+    "Alight Worklife DXC",
+    "secure login",
+    "mobile benefits login",
+    "HSA account",
+    "FSA account",
+    "benefits enrollment",
+    "password reset",
+    "register account",
+    "employee benefits access",
+    "DXC Worklife portal",
+    "DXC benefits access",
   ],
-  description: `${SITE_BRAND} – ${SITE_DOMAIN}. Secure login for the Alight Worklife employee benefits portal at worklife.alight.com. Access FSA, HSA, COBRA, and employee benefit services through the Worklife portal.`,
-
-  authors: [{ name: "Alight Worklife" }],
-  creator: "Alight Worklife",
-  publisher: "Alight Worklife",
+  authors: [{ name: "DXC Worklife" }],
+  creator: "DXC Worklife",
+  publisher: "DXC Worklife",
   applicationName: SITE_BRAND,
   referrer: "origin-when-cross-origin",
   robots: {
@@ -74,33 +73,35 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    title: "Alight Worklife - Login",
-    description: `${SITE_BRAND} – ${SITE_DOMAIN}. Secure login for the Alight Worklife employee benefits portal at worklife.alight.com. Access FSA, HSA, COBRA, and employee benefit services through the Worklife portal.`,
+    title: "DXC Worklife - Login",
+    description: PAGE_DESCRIPTION,
     siteName: SITE_BRAND,
-    url: SITE_BASE_URL,
+    url: CANONICAL_URL,
     images: [
       {
-        url: `${SITE_BASE_URL}/Nbs%20banner_new.png`,
+        url: "/og-banner.jpg",
         width: 1200,
         height: 630,
-        alt: `${SITE_BRAND}`,
+        alt: `${SITE_BRAND} - Employee Benefits Portal`,
       },
     ],
   },
   twitter: {
-    card: "summary",
-    title: "Alight Worklife - Login",
-    description: `${SITE_BRAND} – ${SITE_DOMAIN}. Secure login for the Alight Worklife employee benefits portal at worklife.alight.com. Access FSA, HSA, COBRA, and employee benefit services through the Worklife portal.`,
-    images: [`${SITE_BASE_URL}/Nbs%20banner_new.png`],
+    card: "summary_large_image",
+    title: "DXC Worklife - Login",
+    description: PAGE_DESCRIPTION,
+    images: ["/og-banner.jpg"],
   },
   icons: {
     icon: "/favicon-32x32.png",
+    shortcut: "/favicon-32x32.png",
+    apple: "/favicon-32x32.png",
   },
   category: "Business",
   alternates: {
-    canonical: SITE_BASE_URL,
+    canonical: CANONICAL_URL,
     languages: {
-      "en-US": SITE_BASE_URL,
+      "en-US": CANONICAL_URL,
     },
   },
   other: {
@@ -112,22 +113,36 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
-  themeColor: "#254650",
+  themeColor: "#4D148C",
 };
+
+// \u2014\u2014 Schema.org Structured Data \u2014\u2014
 
 const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
   name: SITE_BRAND,
-  url: SITE_BASE_URL,
-  logo: `${SITE_BASE_URL}/Nbs%20banner_new.png`,
+  url: CANONICAL_URL,
+  logo: `${CANONICAL_URL}/favicon-32x32.png`,
   description:
-    "Alight Worklife provides secure access to FSA, HSA, COBRA, and employee benefit services through the Worklife portal at worklife.alight.com.",
+    "DXC Worklife provides secure access to health, retirement, and dependent care benefits through the Alight Worklife employee benefits portal.",
   sameAs: [],
   contactPoint: {
     "@type": "ContactPoint",
     contactType: "Customer Support",
     availableLanguage: ["en"],
+  },
+};
+
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: SITE_BRAND,
+  url: CANONICAL_URL,
+  potentialAction: {
+    "@type": "SearchAction",
+    target: `${CANONICAL_URL}?search={search_term_string}`,
+    "query-input": "required name=search_term_string",
   },
 };
 
@@ -137,47 +152,53 @@ const faqSchema = {
   mainEntity: [
     {
       "@type": "Question",
-      name: "How do I login to my Alight Worklife account?",
+      name: "How do I login to my DXC Worklife account?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Visit the Alight Worklife portal at worklife.alight.com and enter your username and password. Select your user role and click LOGIN to access your benefits.",
+        text: "Visit the DXC Worklife sign-in page and enter your user ID and password to access your employee benefits portal.",
       },
     },
     {
       "@type": "Question",
-      name: "What is FSA login and how do I access it?",
+      name: "What benefits can I manage through DXC Worklife?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "FSA (Flexible Spending Account) login allows you to manage your health and dependent care reimbursement accounts through the National Benefit Services portal.",
+        text: "You can manage health benefits, retirement plans (401k), dependent care, HSA, FSA, and other employee benefits through the DXC Worklife portal.",
       },
     },
     {
       "@type": "Question",
-      name: "How do I reset my Alight Worklife password?",
+      name: "How do I reset my DXC Worklife password?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Click the forgot password link on the Alight Worklife login page. Follow the verification steps and set a new password for your account.",
+        text: "Use the forgot password link on the sign-in page and follow the verification steps to reset your password.",
       },
     },
     {
       "@type": "Question",
-      name: "What benefits can I manage through this employee benefits portal?",
+      name: "What is DXC Worklife?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "You can manage FSA (health and dependent care), HSA, COBRA continuation coverage, and other employee benefits through your secure account.",
+        text: "DXC Worklife is the employee benefits portal powered by Alight Solutions, where DXC Technology employees can access and manage their benefits.",
       },
     },
   ],
 };
 
-const websiteSchema = {
+const breadcrumbSchema = {
   "@context": "https://schema.org",
-  "@type": "WebSite",
-  name: SITE_BRAND,
-  url: SITE_BASE_URL,
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Home",
+      item: CANONICAL_URL,
+    },
+  ],
 };
 
-const jsonLd = [organizationSchema, faqSchema, websiteSchema];
+const jsonLd = [organizationSchema, websiteSchema, faqSchema, breadcrumbSchema];
 
 export default function RootLayout({
   children,
@@ -187,13 +208,20 @@ export default function RootLayout({
   return (
     <html lang="en-US">
       <head>
+        {/* Preconnect for performance */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
-          href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap"
-          rel="stylesheet"
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
         />
-        <link rel="icon" href="/images/logo.svg" />
-        <link rel="shortcut icon" href="/images/logo.svg" />
-        <link rel="apple-touch-icon" href="/images/logo.svg" />
+        <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+
+        {/* Core meta tags */}
+        <meta name="description" content={PAGE_DESCRIPTION} />
+        <meta name="robots" content="index, follow" />
+        <meta name="theme-color" content="#4D148C" />
+        <link rel="canonical" href={CANONICAL_URL} />
       </head>
       <body className={`${geist.className} font-sans antialiased`}>
         {jsonLd.map((schema, idx) => (

